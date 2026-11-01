@@ -6,8 +6,10 @@ import javafx.scene.paint.Color;
 
 public class Planet {
     private Circle sprite;
-    private double xVelocity = 0;
-    private double yVelocity = 0;
+    private double xVelocity = 2;
+    private double yVelocity = 1.5;
+
+    public double radius = 50;
 
     public Planet(double startX, double startY, Color color) {
         this.sprite = new Circle(15.0);
@@ -24,6 +26,19 @@ public class Planet {
     public void move() {
         this.sprite.setLayoutX(this.sprite.getLayoutX() + xVelocity);
         this.sprite.setLayoutY(this.sprite.getLayoutY() + yVelocity);
+    }
+
+    /**
+     * Moves the planet in a circular orbit
+     * 
+     * @param angle Angle from orgin 
+     */
+    public void circularOrbit(double angle) {
+        this.sprite.setLayoutX(400 + Math.cos(angle) * radius);
+        this.sprite.setLayoutY(300 + Math.sin(angle) * radius);
+
+
+
     }
 }
     
