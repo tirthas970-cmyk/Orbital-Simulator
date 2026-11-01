@@ -9,7 +9,8 @@ public class Planet {
     private double xVelocity = 2;
     private double yVelocity = 1.5;
 
-    public double radius = 50;
+    private double radius;
+    private double angle;
 
     public Planet(double startX, double startY, Color color) {
         this.sprite = new Circle(15.0);
@@ -17,6 +18,13 @@ public class Planet {
         this.sprite.setLayoutX(startX);
         this.sprite.setLayoutY(startY);
         this.sprite.setFill(color);
+
+        double distanceX = startX - 400;
+        double distanceY = startY - 300;
+
+        this.angle = Math.atan2(distanceY, distanceY);
+        this.radius = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
+
     }
     
     public Circle getView() {
@@ -31,11 +39,12 @@ public class Planet {
     /**
      * Moves the planet in a circular orbit
      * 
-     * @param angle Angle from orgin 
      */
-    public void circularOrbit(double angle) {
-        this.sprite.setLayoutX(400 + Math.cos(angle) * radius);
-        this.sprite.setLayoutY(300 + Math.sin(angle) * radius);
+    public void circularOrbit(double increment) {
+        this.sprite.setLayoutX(400 + Math.cos(this.angle) * this.radius);
+        this.sprite.setLayoutY(300 + Math.sin(this.angle) * this.radius);
+
+        this.angle += 0.02;
 
 
 
